@@ -1,0 +1,52 @@
+
+
+A simple web app to track compliance tasks across multiple clients. Built as part of an assignment for LedgersCFO.
+
+---
+
+App: https://your-frontend.vercel.app
+API: https://your-backend.vercel.app/api
+
+
+https://github.com/Harsha872/mini-compliance-tracker
+
+
+At LedgersCFO, teams handle compliance work for multiple clients — filings, audits, certifications and so on. This app gives a simple interface to manage all of that in one place.
+
+- View all clients in a sidebar
+- Click a client to see their tasks
+- Add new tasks with title, description, category, due date and priority
+- Mark tasks as completed or revert them back to pending
+- Filter tasks by status or category
+- Search tasks by title, description or category
+- Search clients by name or industry
+- Overdue tasks (past due date, still pending) are highlighted in red automatically
+- Summary stats show total, pending and completed count per client
+- Add new clients directly from the sidebar
+
+
+methods used API Endpoints are
+GET - get all clients
+POST - Add a new client
+GET - Get tasks for a client
+POST - create a new task
+PUT - Toggle task status
+
+git clone https://github.com/Harsha872/mini-compliance-tracker.git
+cd mini-compliance-tracker
+
+Tradeoffs
+
+- Filtering and search happen on the frontend rather than server side. This is fine for small datasets per client but would need to move to API query params at scale.
+- No authentication. Assumed out of scope for this assignment. In a real product every route would be behind auth.
+- Used MongoDB over a relational DB. Faster to set up and flexible for this use case. A relational DB would make more sense if relationships between entities become more complex.
+- State is managed with React hooks only. No Redux or Zustand. Sufficient for this scope.
+
+Assumptions
+
+- A single user manages all clients. No multi-user or role-based access needed.
+- A task belongs to exactly one client and cannot be reassigned.
+- Overdue means the due date is in the past and status is still Pending. Completed tasks are never overdue.
+- Priority is set at task creation and does not change. Only status is toggled after creation.
+- Seed data is included so the app is usable immediately without manual data entry.
+
